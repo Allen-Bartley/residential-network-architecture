@@ -125,6 +125,18 @@ This repository documents the design and implementation of a hybrid home network
 
 ---
 
+## 🏠 Satellite Deployment – Secondary Residential Network
+
+In addition to the primary home lab network, I configured a simplified wireless extension setup at a second location. Originally operating on a bonded DSL line (~20Mbps down / 1Mbps up), the connection was later upgraded to symmetrical 200Mbps fiber.
+
+### Key Features:
+- Linksys router deployed behind ISP modem for improved wireless performance
+- Wireless repeater configured with distinct SSIDs for 2.4GHz and 5GHz bands
+- Network supported multiple Google Home/Nest devices and two desktop systems
+- Focused on signal stability, device compatibility, and ease of use for non-technical users
+
+---
+
 > Maintainer: Allen Bartley  
 > Repo Created: July 2025  
 > Status: Active Infrastructure  
