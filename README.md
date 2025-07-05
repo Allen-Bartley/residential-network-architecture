@@ -115,6 +115,16 @@ This repository documents the design and implementation of a hybrid home network
 
 ---
 
+## 🧠 Notable Challenges & Solutions
+
+### Ruckus Wi-Fi 6 Access Point (Early Model)
+- Encountered limitations with an early Wi-Fi 6-capable Ruckus access point that lacked support for standard Unleashed firmware due to chipset constraints
+- Researched and identified compatible **Solo firmware** as an alternative to controller-based deployment
+- Successfully flashed and configured the AP for standalone use without a ZoneDirector or SmartZone controller
+- Tuned wireless settings manually to optimize performance in a mixed-device environment
+
+---
+
 ## ✅ Project Highlights
 
 - **Hybrid Topology**: Combines fiber input, powerline Ethernet, and Wi-Fi for multi-zone connectivity
