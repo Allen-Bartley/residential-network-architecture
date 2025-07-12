@@ -146,6 +146,8 @@ These changes reduce unnecessary online exposure, improve local control, and ali
 
 > These actions reflect a commitment to uniform policy enforcement and operational hygiene across all managed devices.
 
+> These registry edits were also applied to personal workstations to eliminate unnecessary Start menu clutter—such as internet search results appearing when the intent is to launch a local application. This aligns with a usability-first posture, ensuring consistent and distraction-free system behavior across all endpoints.
+
 ---
 
 ## 🧠 Notable Challenges & Solutions
