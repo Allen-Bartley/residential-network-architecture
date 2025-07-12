@@ -115,6 +115,39 @@ This repository documents the design and implementation of a hybrid home network
 
 ---
 
+## 🔒 Security Enhancements
+
+### 🛡️ DNS-Level Threat Protection
+
+To enhance baseline network security, the primary router has been configured to use **Quad9 DNS servers**:
+
+- Primary DNS: `9.9.9.9`
+- Secondary DNS: `149.112.112.112`
+
+Quad9 uses global threat intelligence feeds to proactively block access to known malicious domains, protecting all devices on the network against phishing sites, malware control nodes, and unsafe destinations. It also operates under privacy-respecting policies, avoiding collection of personal data—providing a trusted alternative to default ISP resolvers.
+
+> This layer of passive defense complements future integration plans, such as enforcing encrypted DNS resolution (DNS over TLS) via pfSense.
+
+---
+
+### 🧩 Endpoint Hardening via Registry Edits
+
+All Windows-based systems across the residential network—including VM nodes, personal workstations, and mobile endpoints—have been manually hardened through targeted registry modifications. Key changes include:
+
+- **Disabled Bing search integration** in Start menu queries
+- **Removed Cortana functionality and components**
+- **Restricted telemetry reporting settings**
+
+These changes reduce unnecessary online exposure, improve local control, and align with privacy-focused configuration practices seen in production environments. The edits were applied consistently across:
+
+- Windows Server VM and Windows 11 test client
+- Gaming and study desktops
+- All remote and field-use laptops
+
+> These actions reflect a commitment to uniform policy enforcement and operational hygiene across all managed devices.
+
+---
+
 ## 🧠 Notable Challenges & Solutions
 
 ### Ruckus Wi-Fi 6 Access Point (Early Model)
