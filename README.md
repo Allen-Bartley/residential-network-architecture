@@ -1,187 +1,200 @@
-# 🏠 Residential Network Architecture
+# Residential Network Architecture
 
-This repository documents the design and implementation of a hybrid home network infrastructure optimized for performance, coverage, redundancy, and workstation management. Built from the ground up by Allen Bartley, this setup reflects a practical integration of consumer-grade devices with enterprise-level planning.
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
+![Network](https://img.shields.io/badge/Network-Hybrid_Setup-blue?style=flat-square)
+![Coverage](https://img.shields.io/badge/Coverage-Multi_Zone-orange?style=flat-square)
+![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=flat-square)
 
----
+## 🎯 Project Overview
 
-## 🌐 Core Network Topology
+This project documents the home network setup I designed and implemented to solve coverage and connectivity issues in a house with challenging layout and construction. The solution combines fiber internet, powerline adapters, enterprise Wi-Fi equipment, and multiple endpoints to provide reliable connectivity throughout the property.
 
-### 🧩 ISP & Entry Point
-- **Fiber Connection** → **Arris NVG443B Modem/Router**
-  - **Port 1:** Direct to Gaming PC (LAN)
-  - **Port 2:** TP-Link Powerline Adapter (Primary wired extension)
-  - **Port 3:** PoE Injector powering Ruckus R730 Access Point
-
-### ⚡ Powerline Expansion
-- **TP-Link TL-WPA7617KIT:** Dual-band Wi-Fi extender used for wireless coverage on far end of house
-- **TP-Link TL-PA9020P KIT:** Ethernet-to-unmanaged-switch bridge used in study room
+The network serves multiple computers, smart home devices, and provides the infrastructure for my various IT lab projects and learning environments.
 
 ---
 
-## 📡 Wireless Coverage Zones
+## 🏠 The Challenge
 
-| Device | Location | Role |
-|--------|----------|------|
-| **Ruckus R730 AP** | Central hallway (PoE powered) | Main access point for home Wi-Fi |
-| **TL-WPA7617KIT** | Bedroom zone | Secondary Wi-Fi coverage for remote rooms |
+**House Layout Issues:**
+- Long, narrow house with rooms spread across significant distance
+- Dense wall construction (hardwood paneling) that interfered with Wi-Fi signals
+- Need to connect multiple work areas with reliable internet
+- Mix of wired and wireless devices requiring different connection types
 
----
-
-## 🖥️ Wired Endpoint Layout
-
-### 🎮 Gaming Workstation (Direct LAN)
-
-| Component | Specification |
-|-----------|----------------|
-| OS | Windows 11 Pro 64-bit |
-| CPU | Intel Core i7 12700K |
-| GPU | NVIDIA RTX 3060 12GB |
-| RAM | 32GB DDR5 @ 5600MHz |
-| Motherboard | MSI MAG B760 TOMAHAWK WIFI |
-| Monitors | Dual: 4K Sceptre + HP 27mq |
-| Storage | ~25TB across SATA, NVMe, USB |
-> *Role:* Primary endpoint for gaming, image generation, and high-throughput tasks.
+**Requirements:**
+- Reliable internet for remote work and lab projects
+- Good Wi-Fi coverage throughout the house
+- Wired connections for high-performance workstations
+- Support for smart home devices and streaming
 
 ---
 
-### 🖥️ Study Workstation (Powerline + Switch)
+## 🌐 Network Design
 
-| Component | Specification |
-|-----------|----------------|
-| OS | Windows 10 Home 64-bit |
-| CPU | Intel Core i5 6500 |
-| GPU | NVIDIA RTX 2060 SUPER |
-| RAM | 32GB DDR4 |
-| Storage | 1.8TB HDD + 953GB SSD |
-> *Role:* Productivity and research node. Connected via unmanaged switch and shared through a KVM setup.
+### Internet Connection
+- **ISP:** Fiber connection through Arris NVG443B modem/router
+- **Speed:** Gigabit service providing sufficient bandwidth for all uses
 
----
+### Core Infrastructure
+- **Main Router:** ISP-provided Arris unit serving as DHCP server and gateway
+- **Primary Connections:** Three key connections from main router:
+  - Direct ethernet to gaming workstation (high performance)
+  - Powerline adapter for extending wired network
+  - PoE injector for enterprise access point
 
-### 🖥️ Auxiliary Study Workstation (KVM Node)
-
-| Component | Specification |
-|-----------|----------------|
-| OS | Windows 11 Pro 64-bit |
-| CPU | AMD Ryzen 3 3200U |
-| GPU | AMD Vega 3 |
-| RAM | 20GB DDR4 |
-| Storage | 2TB HDD + 2TB SSD + 119GB USB |
-> *Role:* Secondary access point via KVM switch. Supports backup tasks and image generation workflows.
+### Network Extensions
+- **Powerline Network:** TP-Link adapters to extend ethernet over existing electrical wiring
+- **Enterprise Wi-Fi:** Ruckus R730 access point for better coverage than consumer equipment
+- **Wi-Fi Extender:** Additional TP-Link unit for far end of house coverage
 
 ---
 
-### 💻 Main Laptop (Remote Access Node)
+## 🖥️ Connected Systems
 
-| Component | Specification |
-|-----------|----------------|
-| OS | Windows 11 Pro 64-bit |
-| CPU | AMD Ryzen 3 3200U |
-| GPU | AMD Vega 3 |
-| RAM | 20GB DDR4 |
-| Storage | 2TB HDD + 2TB SSD + 119GB USB |
-> *Role:* Portable control node using VPN and remote access tools to connect to the gaming workstation and internal network services.
+### Primary Workstation (Direct Ethernet)
+- **System:** Custom gaming PC (i7-12700K, RTX 3060, 32GB RAM)
+- **Connection:** Direct gigabit ethernet for best performance
+- **Purpose:** Primary work system, AI projects, gaming, 3D printing management
 
----
+### Study Area Network
+- **Connection Method:** Powerline adapter to unmanaged switch
+- **Systems:** Two desktop computers sharing KVM switch
+- **Purpose:** Secondary work area, research, backup systems
 
-### 📱 Compact Touchscreen Laptop (Field Node)
-
-| Component | Specification |
-|-----------|----------------|
-| OS | Windows 11 Pro 64-bit |
-| CPU | Intel Celeron @ 1.80GHz |
-| RAM | 12GB DDR4 |
-| Storage | 2TB SATA SSD |
-> *Role:* Ultra-mobile interface for light diagnostics, documentation, and fieldwork. OS manually reinstalled for security assurance.
+### Mobile Devices
+- **Laptops:** Multiple systems for portable work and field use
+- **Connection:** Wi-Fi through enterprise access point or extenders
+- **Purpose:** Flexible access throughout house and property
 
 ---
 
-## 🔌 Peripheral & Print Management
+## 📡 Wireless Coverage Strategy
 
-- **Dual Monitor KVM Switch**: Shares input/output between three active desktops
-- **USB 3-Port Hub**: Front-mounted access at desk level for portable drives and peripherals
-- **Canon imageCLASS MF273dw**: Wireless monochrome multifunction printer in study zone
+### Enterprise Access Point
+- **Model:** Ruckus R730 (early Wi-Fi 6 model)
+- **Power:** PoE injector from main router
+- **Location:** Central hallway for optimal coverage
+- **Configuration:** Solo firmware (standalone operation)
 
----
-
-## 🧠 Smart Home & Entertainment Ecosystem
-
-| Device | Location | Role |
-|--------|----------|------|
-| Google Nest Display | Kitchen | Smart assistant & visual dashboard |
-| Google Home Mini | Bathroom | Voice-controlled smart speaker |
-| Roku TV + Google TV Stick + PS4 | Bedroom | Wireless media and entertainment hub |
-| Smart Bulbs | Throughout | Voice and app-controlled lighting |
-| Multiple Wi-Fi Endpoints | Various | Seamless coverage across residence |
+### Coverage Extension
+- **Secondary Wi-Fi:** TP-Link extender in bedroom area
+- **Smart Devices:** Google Home/Nest devices throughout house
+- **Entertainment:** Roku TV and gaming systems on wireless
 
 ---
 
-## 🔒 Security Enhancements
+## 🔧 Implementation Challenges & Solutions
 
-### 🛡️ DNS-Level Threat Protection
+### Ruckus Access Point Setup
+**Challenge:** R730 model didn't support standard Unleashed firmware
+**Root Cause:** Early Wi-Fi 6 chipset with limited firmware options
+**Solution:** Researched and installed Solo firmware for standalone operation
 
-To enhance baseline network security, the primary router has been configured to use **Quad9 DNS servers**:
+### Powerline Network Reliability
+**Challenge:** Electrical wiring quality affecting powerline performance
+**Solution:** Selected higher-quality TP-Link adapters and tested multiple outlet locations
+**Result:** Stable connection sufficient for office work and general internet use
 
-- Primary DNS: `9.9.9.9`
-- Secondary DNS: `149.112.112.112`
-
-Quad9 uses global threat intelligence feeds to proactively block access to known malicious domains, protecting all devices on the network against phishing sites, malware control nodes, and unsafe destinations. It also operates under privacy-respecting policies, avoiding collection of personal data—providing a trusted alternative to default ISP resolvers.
-
-> This layer of passive defense complements future integration plans, such as enforcing encrypted DNS resolution (DNS over TLS) via pfSense.
-
----
-
-### 🧩 Endpoint Hardening via Registry Edits
-
-All Windows-based systems across the residential network—including VM nodes, personal workstations, and mobile endpoints—have been manually hardened through targeted registry modifications. Key changes include:
-
-- **Disabled Bing search integration** in Start menu queries
-- **Removed Cortana functionality and components**
-- **Restricted telemetry reporting settings**
-
-These changes reduce unnecessary online exposure, improve local control, and align with privacy-focused configuration practices seen in production environments. The edits were applied consistently across:
-
-- Windows Server VM and Windows 11 test client
-- Gaming and study desktops
-- All remote and field-use laptops
-
-> These actions reflect a commitment to uniform policy enforcement and operational hygiene across all managed devices.
-
-> These registry edits were also applied to personal workstations to eliminate unnecessary Start menu clutter—such as internet search results appearing when the intent is to launch a local application. This aligns with a usability-first posture, ensuring consistent and distraction-free system behavior across all endpoints.
+### Wi-Fi Dead Zones
+**Challenge:** House construction blocking wireless signals
+**Solution:** Strategic placement of enterprise AP plus consumer extender
+**Result:** Reliable coverage in all rooms and work areas
 
 ---
 
-## 🧠 Notable Challenges & Solutions
+## 🔒 Network Security Improvements
 
-### Ruckus Wi-Fi 6 Access Point (Early Model)
-- Encountered limitations with an early Wi-Fi 6-capable Ruckus access point that lacked support for standard Unleashed firmware due to chipset constraints
-- Researched and identified compatible **Solo firmware** as an alternative to controller-based deployment
-- Successfully flashed and configured the AP for standalone use without a ZoneDirector or SmartZone controller
-- Tuned wireless settings manually to optimize performance in a mixed-device environment
+### DNS Security
+- **Primary DNS:** Quad9 (9.9.9.9) for malware/phishing protection
+- **Secondary DNS:** 149.112.112.112 for redundancy
+- **Benefit:** Network-level protection against known malicious domains
 
----
-
-## ✅ Project Highlights
-
-- **Hybrid Topology**: Combines fiber input, powerline Ethernet, and Wi-Fi for multi-zone connectivity
-- **Peripheral Switching**: Efficient device access across systems via KVM and USB hub
-- **Redundancy Planning**: Multiple remote access tools and mirrored workstations
-- **DIY Expertise**: Custom-built gaming PC and manually configured devices
-- **Security Awareness**: Reinstalled OS on imported devices to eliminate potential risks
+### Endpoint Hardening
+- **Registry Modifications:** Applied consistent Windows privacy/security settings
+- **Scope:** All Windows systems including VMs and workstations
+- **Changes:** Disabled unnecessary telemetry, Cortana, Bing integration
+- **Goal:** Reduce attack surface and improve privacy across all systems
 
 ---
 
-## 🏠 Satellite Deployment – Secondary Residential Network
+## ✅ Current Network Performance
 
-In addition to the primary home lab network, I configured a simplified wireless extension setup at a second location. Originally operating on a bonded DSL line (~20Mbps down / 1Mbps up), the connection was later upgraded to symmetrical 200Mbps fiber.
+**Coverage Results:**
+- ✅ Reliable internet access in all rooms and work areas
+- ✅ High-performance wired connections where needed
+- ✅ Good Wi-Fi performance for mobile devices and smart home equipment
+- ✅ Stable connections for video calls and streaming
 
-### Key Features:
-- Linksys router deployed behind ISP modem for improved wireless performance
-- Wireless repeater configured with distinct SSIDs for 2.4GHz and 5GHz bands
-- Network supported multiple Google Home/Nest devices and two desktop systems
-- Focused on signal stability, device compatibility, and ease of use for non-technical users
+**Capacity Handling:**
+- Multiple simultaneous video streams
+- VPN connections for remote lab access
+- File transfers and backup operations
+- Smart home device management
 
 ---
 
-> Maintainer: Allen Bartley  
-> Repo Created: July 2025  
-> Status: Active Infrastructure  
+## 📚 Skills Demonstrated
+
+**Network Planning:**
+- Site survey and coverage analysis for challenging building layout
+- Selection of appropriate equipment for specific use cases
+- Integration of consumer and enterprise networking equipment
+
+**Implementation:**
+- Powerline networking setup and optimization
+- Enterprise access point configuration and firmware management
+- Multi-zone coverage planning with various wireless technologies
+
+**Troubleshooting:**
+- Firmware compatibility research and resolution
+- Performance optimization for mixed wired/wireless environment
+- Security configuration across diverse endpoint types
+
+---
+
+## 🚀 Future Improvements
+
+**Potential Upgrades:**
+- **pfSense Router:** Replace ISP router with more capable open-source solution
+- **Managed Switches:** Add VLANs for network segmentation
+- **Additional APs:** Expand enterprise Wi-Fi coverage if needed
+- **Network Monitoring:** Add tools for performance tracking and troubleshooting
+
+**Learning Opportunities:**
+- VLAN configuration and network segmentation
+- Advanced firewall rules and traffic shaping
+- Network monitoring and performance analysis tools
+
+---
+
+## 💡 Key Lessons
+
+**Equipment Selection:**
+- Enterprise equipment can be worth the investment for challenging environments
+- Powerline adapters work well when implemented correctly
+- Don't underestimate the impact of building construction on wireless signals
+
+**Planning Approach:**
+- Map out coverage needs before purchasing equipment
+- Consider both current and future bandwidth requirements
+- Test equipment in actual environment before final installation
+
+**Practical Implementation:**
+- Sometimes non-standard firmware solutions are necessary
+- Network security improvements should be applied consistently
+- Document configurations for future troubleshooting
+
+---
+
+## 🔗 Related Projects
+
+- [`ruckus-r730-home-deployment`](https://github.com/Allen-Bartley/ruckus-r730-home-deployment) - Detailed AP setup documentation
+- [`windows-server-ad-lab`](https://github.com/Allen-Bartley/windows-server-ad-lab) - Lab environment running on this network
+- [`personal-pc-build-2024`](https://github.com/Allen-Bartley/personal-pc-build-2024) - Primary workstation on this network
+
+---
+
+> **Project Status:** Active production network  
+> **Implementation Date:** 2025  
+> **Current Performance:** Meeting all requirements reliably  
+> **Skills Focus:** Network design, mixed equipment integration, coverage optimization
